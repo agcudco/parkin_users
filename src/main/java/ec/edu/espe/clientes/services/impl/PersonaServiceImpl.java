@@ -10,8 +10,10 @@ import ec.edu.espe.clientes.model.PersonaNatural;
 import ec.edu.espe.clientes.repository.PersonaRepository;
 import ec.edu.espe.clientes.services.PersonaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -26,7 +28,8 @@ import java.util.stream.Collectors;
 public class PersonaServiceImpl implements PersonaService {
 
     private final PersonaRepository personaRepository;
-    private final PersonaMapper personaMapper;
+    @Autowired
+    private PersonaMapper personaMapper;
 
     @Override
     @Transactional

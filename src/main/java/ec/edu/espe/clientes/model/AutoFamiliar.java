@@ -13,6 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@Builder
 public class AutoFamiliar extends Vehiculo {
 
     @Column(name = "numero_puertas", nullable = false)

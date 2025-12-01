@@ -2,8 +2,10 @@ package ec.edu.espe.clientes.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @Data // Lombok: genera getters, setters, equals, hashCode, toString
 @NoArgsConstructor // Lombok: constructor sin argumentos
 @AllArgsConstructor // Lombok: constructor con todos los argumentos
+@SuperBuilder
 public abstract class Persona {
 
     @Id

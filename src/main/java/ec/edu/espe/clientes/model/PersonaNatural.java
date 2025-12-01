@@ -2,6 +2,8 @@ package ec.edu.espe.clientes.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import java.time.LocalDate;
 
 /**
@@ -14,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true) // Lombok: incluye campos de la superclase en equals/hashCode
+@SuperBuilder
 public class PersonaNatural extends Persona {
 
     @Column(name = "apellido", nullable = false, length = 100)

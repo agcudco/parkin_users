@@ -13,6 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@Builder
 public class Moto extends Vehiculo {
 
     @Column(name = "cilindrada", nullable = false)

@@ -14,10 +14,8 @@ import org.mapstruct.factory.Mappers;
 /**
  * Mapper para conversión entre Entidades Vehiculo y DTOs
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring") // ¡IMPORTANTE! Esto crea el bean de Spring
 public interface VehiculoMapper {
-
-    VehiculoMapper INSTANCE = Mappers.getMapper(VehiculoMapper.class);
 
     /**
      * Convierte MotoRequestDto a entidad Moto
@@ -25,7 +23,7 @@ public interface VehiculoMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "fechaRegistro", ignore = true)
     @Mapping(target = "activo", ignore = true)
-    @Mapping(target = "propietario", ignore = true)
+    @Mapping(target = "propietario", ignore = true) // Se establece manualmente
     Moto toEntity(MotoRequestDto dto);
 
     /**
@@ -34,11 +32,12 @@ public interface VehiculoMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "fechaRegistro", ignore = true)
     @Mapping(target = "activo", ignore = true)
-    @Mapping(target = "propietario", ignore = true)
+    @Mapping(target = "propietario", ignore = true) // Se establece manualmente
     AutoFamiliar toEntity(AutoFamiliarRequestDto dto);
 
     /**
      * Convierte entidad Vehiculo a VehiculoResponseDto
+     * expression: Permite usar métodos Java personalizados
      */
     @Mapping(target = "tipoVehiculo", expression = "java(getTipoVehiculo(vehiculo))")
     @Mapping(target = "propietarioId", source = "propietario.id")
@@ -50,6 +49,9 @@ public interface VehiculoMapper {
      * Determina el tipo de vehículo basado en la clase concreta
      */
     default String getTipoVehiculo(Vehiculo vehiculo) {
+        if (vehiculo == null) {
+            return "DESCONOCIDO";
+        }
         if (vehiculo instanceof Moto) {
             return "MOTO";
         } else if (vehiculo instanceof AutoFamiliar) {

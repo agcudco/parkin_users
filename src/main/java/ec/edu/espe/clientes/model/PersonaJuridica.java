@@ -2,6 +2,7 @@ package ec.edu.espe.clientes.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Clase que representa una Persona Jurídica (empresa)
@@ -13,6 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@SuperBuilder
 public class PersonaJuridica extends Persona {
 
     @Column(name = "nombre_comercial", nullable = false, length = 200)
