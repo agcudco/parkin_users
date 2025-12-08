@@ -2,6 +2,7 @@ package ec.edu.espe.clientes.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Clase que representa un Auto Familiar
@@ -9,11 +10,13 @@ import lombok.*;
  */
 @Entity
 @Table(name = "autos_familiares")
+@DiscriminatorValue("AUTO_FAMILIAR")
+@PrimaryKeyJoinColumn(name = "vehiculo_id")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Builder
+@SuperBuilder
 public class AutoFamiliar extends Vehiculo {
 
     @Column(name = "numero_puertas", nullable = false)

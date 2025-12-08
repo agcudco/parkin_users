@@ -21,6 +21,7 @@ import java.util.UUID;
 @NoArgsConstructor // Lombok: constructor sin argumentos
 @AllArgsConstructor // Lombok: constructor con todos los argumentos
 @SuperBuilder
+@DiscriminatorColumn(name = "tipo_persona", discriminatorType = DiscriminatorType.STRING)
 public abstract class Persona {
 
     @Id

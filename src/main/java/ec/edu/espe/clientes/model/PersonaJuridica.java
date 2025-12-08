@@ -10,6 +10,8 @@ import lombok.experimental.SuperBuilder;
  */
 @Entity
 @Table(name = "personas_juridicas")
+@DiscriminatorValue("JURIDICA")
+@PrimaryKeyJoinColumn(name = "persona_id")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

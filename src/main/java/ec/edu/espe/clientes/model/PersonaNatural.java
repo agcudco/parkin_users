@@ -12,6 +12,8 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "personas_naturales")
+@DiscriminatorValue("NATURAL")
+@PrimaryKeyJoinColumn(name = "persona_id")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

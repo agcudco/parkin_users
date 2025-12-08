@@ -3,6 +3,7 @@ package ec.edu.espe.clientes.services.impl;
 //import jakarta.transaction.Transactional;
 
 import ec.edu.espe.clientes.dto.mappers.VehiculoMapper;
+import ec.edu.espe.clientes.dto.mappers.VehiculoMapperManual;
 import ec.edu.espe.clientes.dto.requests.AutoFamiliarRequestDto;
 import ec.edu.espe.clientes.dto.requests.MotoRequestDto;
 import ec.edu.espe.clientes.dto.requests.VehiculoResponseDto;
@@ -32,7 +33,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 
     private final VehiculoRepository vehiculoRepository;
     private final PersonaRepository personaRepository;
-    private final VehiculoMapper vehiculoMapper;
+    private final VehiculoMapperManual vehiculoMapper;
 
     @Override
     @Transactional

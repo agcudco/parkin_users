@@ -2,6 +2,7 @@ package ec.edu.espe.clientes.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Clase que representa una Moto
@@ -9,11 +10,13 @@ import lombok.*;
  */
 @Entity
 @Table(name = "motos")
+@DiscriminatorValue("MOTO")
+@PrimaryKeyJoinColumn(name = "vehiculo_id")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Builder
+@SuperBuilder
 public class Moto extends Vehiculo {
 
     @Column(name = "cilindrada", nullable = false)

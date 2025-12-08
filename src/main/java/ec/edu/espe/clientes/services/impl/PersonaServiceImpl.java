@@ -1,6 +1,7 @@
 package ec.edu.espe.clientes.services.impl;
 
 import ec.edu.espe.clientes.dto.mappers.PersonaMapper;
+import ec.edu.espe.clientes.dto.mappers.PersonaMapperManual;
 import ec.edu.espe.clientes.dto.requests.PersonaJuridicaRequestDto;
 import ec.edu.espe.clientes.dto.requests.PersonaNaturalRequestDto;
 import ec.edu.espe.clientes.dto.responses.PersonaResponseDto;
@@ -29,7 +30,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     private final PersonaRepository personaRepository;
     @Autowired
-    private PersonaMapper personaMapper;
+    private PersonaMapperManual personaMapper;
 
     @Override
     @Transactional
@@ -124,6 +125,7 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     @Transactional(readOnly = true)
     public List<PersonaResponseDto> getPersonasNaturales() {
+        // Usar el nuevo método del repositorio que no causa error
         return personaRepository.findPersonasNaturalesActivas().stream()
                 .map(personaMapper::toDto)
                 .collect(Collectors.toList());
@@ -132,6 +134,7 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     @Transactional(readOnly = true)
     public List<PersonaResponseDto> getPersonasJuridicas() {
+        // Usar el nuevo método del repositorio que no causa error
         return personaRepository.findPersonasJuridicasActivas().stream()
                 .map(personaMapper::toDto)
                 .collect(Collectors.toList());

@@ -1,5 +1,7 @@
 package ec.edu.espe.clientes.repository;
 
+import ec.edu.espe.clientes.model.AutoFamiliar;
+import ec.edu.espe.clientes.model.Moto;
 import ec.edu.espe.clientes.model.Vehiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,16 +12,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * Repositorio para entidades Vehiculo
- */
+
+
 @Repository
 public interface VehiculoRepository extends JpaRepository<Vehiculo, UUID> {
 
-    // Buscar por placa (única)
+    // Buscar por placa
     Optional<Vehiculo> findByPlaca(String placa);
 
-    // Verificar existencia por placa
+    // Verificar existencia
     boolean existsByPlaca(String placa);
 
     // Buscar vehículos activos
@@ -28,23 +29,17 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, UUID> {
     // Buscar vehículos por propietario
     List<Vehiculo> findByPropietarioIdAndActivoTrue(UUID propietarioId);
 
-    // Buscar motos activas
-    @Query(value = "SELECT v.* FROM vehiculos v WHERE v.id IN " +
-            "(SELECT m.id FROM motos m) AND v.activo = true",
-            nativeQuery = true)
-    List<Vehiculo> findMotosActivas();
+    // Buscar motos activas (JPQL seguro)
+    @Query("SELECT m FROM Moto m WHERE m.activo = true")
+    List<Moto> findMotosActivas();
 
-    // Buscar autos familiares activos
-    @Query(value = "SELECT v.* FROM vehiculos v WHERE v.id IN " +
-            "(SELECT af.id FROM autos_familiares af) AND v.activo = true",
-            nativeQuery = true)
-    List<Vehiculo> findAutosFamiliaresActivos();
+    // Buscar autos familiares activos (JPQL seguro)
+    @Query("SELECT af FROM AutoFamiliar af WHERE af.activo = true")
+    List<AutoFamiliar> findAutosFamiliaresActivos();
 
     // Contar vehículos por propietario
     long countByPropietarioIdAndActivoTrue(UUID propietarioId);
 
     // Buscar por marca
     List<Vehiculo> findByMarcaContainingIgnoreCaseAndActivoTrue(String marca);
-
-    List<Vehiculo> findAutosFamiliaresActivas();
 }
