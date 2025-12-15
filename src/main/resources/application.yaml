@@ -2,8 +2,8 @@ spring:
   application:
     name: clientes
   datasource:
-    url: jdbc:postgresql://localhost:5433/db_parkin_users
-    username: parkin
+    url: jdbc:postgresql://localhost:5432/db_parkin_users
+    username: postgres
     password: qwerty123
     driver-class-name: org.postgresql.Driver
   jpa:
