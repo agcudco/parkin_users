@@ -3,6 +3,7 @@ package ec.edu.espe.clientes.model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,8 +23,8 @@ import java.util.UUID;
 public abstract class Vehiculo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
+    @ColumnDefault("gen_random_uuid()")
+    @Generated
     private UUID id; // Identificador único universal
 
     @Column(name = "placa", nullable = false, unique = true, length = 10)

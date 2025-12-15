@@ -50,18 +50,7 @@ public class AutoFamiliar extends Vehiculo {
             impuestoBase = 200.0;
         }
 
-        // Ajustes por tipo de combustible
-        switch (this.tipoCombustible.toLowerCase()) {
-            case "eléctrico":
-                impuestoBase *= 0.5; // 50% de descuento
-                break;
-            case "híbrido":
-                impuestoBase *= 0.7; // 30% de descuento
-                break;
-            case "diesel":
-                impuestoBase *= 1.2; // 20% de recargo
-                break;
-        }
+
 
         return Math.max(impuestoBase, 100.0); // Impuesto mínimo de 100
     }
