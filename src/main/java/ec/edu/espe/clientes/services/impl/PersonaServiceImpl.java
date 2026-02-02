@@ -1,10 +1,10 @@
 package ec.edu.espe.clientes.services.impl;
 
-import ec.edu.espe.clientes.dto.mappers.PersonaMapper;
 import ec.edu.espe.clientes.dto.mappers.PersonaMapperManual;
 import ec.edu.espe.clientes.dto.requests.PersonaJuridicaRequestDto;
 import ec.edu.espe.clientes.dto.requests.PersonaNaturalRequestDto;
 import ec.edu.espe.clientes.dto.responses.PersonaResponseDto;
+import ec.edu.espe.clientes.messaging.NotificationProducer;
 import ec.edu.espe.clientes.model.Persona;
 import ec.edu.espe.clientes.model.PersonaJuridica;
 import ec.edu.espe.clientes.model.PersonaNatural;
@@ -32,6 +32,9 @@ public class PersonaServiceImpl implements PersonaService {
     @Autowired
     private PersonaMapperManual personaMapper;
 
+    @Autowired
+    private NotificationProducer producer;
+
     @Override
     @Transactional
     public PersonaResponseDto createPersonaNatural(PersonaNaturalRequestDto request) {
@@ -55,6 +58,10 @@ public class PersonaServiceImpl implements PersonaService {
 
         // Persistir en base de datos
         Persona personaGuardada = personaRepository.save(personaNatural);
+
+        producer.notificationPersonCreated(personaGuardada.getId(),
+                personaGuardada.getNombre(),
+                personaGuardada.getIdentificacion());
 
         // Convertir a DTO de respuesta
         return personaMapper.toDto(personaGuardada);
